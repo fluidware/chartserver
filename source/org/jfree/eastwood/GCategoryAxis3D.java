@@ -72,7 +72,7 @@ class GCategoryAxis3D extends CategoryAxis3D implements GLabelledAxis {
     public GCategoryAxis3D() {
         super();
         this.labels = null;
-        setTickLabelPaint(Color.gray);
+        setTickLabelPaint(Color.darkGray);
         setTickLabelFont(new Font("Dialog", Font.PLAIN, 11));
     }
 

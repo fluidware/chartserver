@@ -97,7 +97,7 @@ class GValueAxis extends NumberAxis implements GLabelledAxis {
         // the data is normalised into the range 0.0 to 1.0, so the real axis
         // has the same range...
         setRange(0.0, 1.0);
-        setTickLabelPaint(Color.gray);
+        setTickLabelPaint(Color.darkGray);
         setTickLabelFont(new Font("Dialog", Font.PLAIN, 11));
     }
 

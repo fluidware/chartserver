@@ -83,6 +83,8 @@ import org.jfree.chart.axis.Axis;
 import org.jfree.chart.axis.AxisLocation;
 import org.jfree.chart.axis.CategoryAnchor;
 import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.entity.TickLabelEntity;
 import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.PieSectionLabelGenerator;
@@ -279,7 +281,6 @@ public class ChartEngine {
             }
         }
 
-
         // *** AXIS LABELS ***
         String[] axisLabelStr = (String[]) params.get("chxl");
         if (axisLabelStr != null) {
@@ -351,7 +352,7 @@ public class ChartEngine {
             String[] s = breakString(titleStr[0], '|');
             for (int i = 0; i < s.length; i++) {
                 TextTitle t = new TextTitle(s[i].replace('+', ' '));
-                t.setPaint(Color.gray);
+                t.setPaint(Color.darkGray);
                 // Google seems to use 14pt fonts for titles and 12pt fonts for
                 // all other text. Make sure this relationship remains.
                 t.setFont(font.deriveFont(font.getSize2D() * 14f / 12f));
@@ -549,7 +550,7 @@ public class ChartEngine {
                     plot.setLabelGenerator(
                             new GPieSectionLabelGenerator(labels));
                     plot.setLabelFont(font);
-                    plot.setLabelPaint(Color.gray);
+                    plot.setLabelPaint(Color.darkGray);
                 }
             }
         }
@@ -601,7 +602,7 @@ public class ChartEngine {
                 }
                 legend.setPosition(pos);
                 legend.setItemFont(font);
-                legend.setItemPaint(Color.gray);
+                legend.setItemPaint(Color.darkGray);
                 chart.addSubtitle(legend);
             }
         }
@@ -716,7 +717,7 @@ public class ChartEngine {
         plot.setLabelShadowPaint(null);
         plot.setLabelPadding(RectangleInsets.ZERO_INSETS);
         plot.setLabelFont(new Font("Dialog", Font.PLAIN, 12));
-        plot.setLabelPaint(Color.gray);
+        plot.setLabelPaint(Color.darkGray);
         plot.setToolTipGenerator(new StandardPieToolTipGenerator("{2}"));
         return chart;
     }
@@ -744,7 +745,7 @@ public class ChartEngine {
         plot.setLabelShadowPaint(null);
         plot.setLabelPadding(RectangleInsets.ZERO_INSETS);
         plot.setLabelFont(new Font("Dialog", Font.PLAIN, 12));
-        plot.setLabelPaint(Color.gray);
+        plot.setLabelPaint(Color.darkGray);
         plot.setToolTipGenerator(new StandardPieToolTipGenerator("{2}"));
         return chart;
     }
@@ -1443,7 +1444,8 @@ public class ChartEngine {
                 CategoryPlot cp = (CategoryPlot) p;
 
                 CategoryItemRenderer r = cp.getRenderer();
-                ((GCategoryPlot.LabelGenerator)r.getItemLabelGenerator(dataset, datapoint)).setLabel(dataset, datapoint, text);
+                GCategoryPlot.LabelGenerator label = (GCategoryPlot.LabelGenerator) r.getItemLabelGenerator(dataset, datapoint);
+                label.setLabel(dataset, datapoint, text);
             }
             else if (p instanceof XYPlot) {
                 XYPlot xyp = (XYPlot) p;

@@ -67,7 +67,13 @@ public class Application {
                 
                 JFreeChart chart = ChartEngine.buildChart(params, new Font("arial", Font.PLAIN, 12));
                 chart.setAntiAlias(true);
-                String format = ((String[])params.get("format"))[0];
+                System.out.print("asd");
+                String[] format_p = ((String[])params.get("format"));
+                String format = "png";
+                if (format_p != null) {
+                    format = format_p[0];
+                }
+                System.out.print(format);
 
                 // *** CHART SIZE ***
                 String[] size = (String[]) params.get("chs");
