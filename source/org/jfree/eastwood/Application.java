@@ -3,6 +3,7 @@ package org.jfree.eastwood;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
@@ -67,7 +68,6 @@ public class Application {
                 
                 JFreeChart chart = ChartEngine.buildChart(params, new Font("arial", Font.PLAIN, 12));
                 chart.setAntiAlias(true);
-                System.out.print("asd");
                 String[] format_p = ((String[])params.get("format"));
                 String format = "png";
                 if (format_p != null) {
@@ -85,6 +85,9 @@ public class Application {
                     dims = new int[] {200, 125};
                 }
                 
+                // *** CHART SCALE ***
+                int scale = Integer.valueOf(params.containsKey("chscale") ? (String) params.get("chscale"): "1");
+
                 if (chart != null) {
                     if (format.toLowerCase().equals("svg")){
                         response.setContentType("image/svg+xml");
@@ -99,8 +102,10 @@ public class Application {
                         ChartUtilities.writeChartAsJPEG(out, chart, dims[0], dims[1]);
                     } else {
                         response.setContentType("image/png");
-                        ChartUtilities.writeChartAsPNG(out, chart, dims[0], dims[1]);
-                    }
+                        System.out.println("tyosyfdosdhfos");
+                        ChartUtilities.writeScaledChartAsPNG(out, chart, dims[0], dims[1], scale,scale);
+                        //ChartUtilities.writeChartAsPNG(out, chart, dims[0], dims[1]); 
+                   }
                 }
             }
             catch (Exception e) {
