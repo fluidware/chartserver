@@ -73,7 +73,6 @@ public class Application {
                 if (format_p != null) {
                     format = format_p[0];
                 }
-                System.out.print(format);
 
                 // *** CHART SIZE ***
                 String[] size = (String[]) params.get("chs");
@@ -86,7 +85,7 @@ public class Application {
                 }
                 
                 // *** CHART SCALE ***
-                int scale = Integer.valueOf(params.containsKey("chscale") ? (String) params.get("chscale"): "1");
+                int scale = Integer.valueOf(params.containsKey("chscale") ? ((String[]) params.get("chscale"))[0]: "1");
 
                 if (chart != null) {
                     if (format.toLowerCase().equals("svg")){
@@ -102,8 +101,7 @@ public class Application {
                         ChartUtilities.writeChartAsJPEG(out, chart, dims[0], dims[1]);
                     } else {
                         response.setContentType("image/png");
-                        System.out.println("tyosyfdosdhfos");
-                        ChartUtilities.writeScaledChartAsPNG(out, chart, dims[0], dims[1], scale,scale);
+                        ChartUtilities.writeScaledChartAsPNG(out, chart, dims[0], dims[1], scale, scale);
                         //ChartUtilities.writeChartAsPNG(out, chart, dims[0], dims[1]); 
                    }
                 }
