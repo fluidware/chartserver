@@ -1,5 +1,6 @@
 package org.jfree.eastwood;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.geom.Rectangle2D;
@@ -101,6 +102,7 @@ public class Application {
                         ChartUtilities.writeChartAsJPEG(out, chart, dims[0], dims[1]);
                     } else {
                         response.setContentType("image/png");
+                        chart.setBackgroundPaint(null);
                         ChartUtilities.writeScaledChartAsPNG(out, chart, dims[0], dims[1], scale, scale);
                         //ChartUtilities.writeChartAsPNG(out, chart, dims[0], dims[1]); 
                    }
